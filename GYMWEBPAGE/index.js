@@ -25,5 +25,6 @@ mongoose.connect("mongodb://localhost:27017/gymdb").then(res=>{
 
 app.get('/', regisCtr.get);
 app.post('/register', regisCtr.create);
-app.put('/login', regisCtr.login);
+app.patch('/login', regisCtr.login);
+app.put("/update", regisCtr.update);
  

@@ -22,7 +22,7 @@ const regisCtr = {
             else{
                 const userCreated = new regisModel(req.body);
                 userCreated.save().then((user)=>{
-                    res.send(user.name + "is succesfully register");
+                    res.send(user.name + " is succesfully register");
                 }).catch(error=>{
                     res.send("something went wrong");
                 })
@@ -32,12 +32,26 @@ const regisCtr = {
             res.send({error: err});
         });        
     },
+    update: (req, res)=>{
+        regisModel.findOne({email: req.body.email}).then((user)=>{
+            regisModel.findByIdAndUpdate(user._id, {$set: req.body},{new: true}).then((user)=>{
+                res.status(200);
+                res.send({data: user});
+            }).catch(err=>{
+                res.status(500);
+                res.send("no record found");
+            })
+        })
+       
+    },
+
+
     login: (req,res)=>{
-        regisModel.find({email: req.body.email}, {password: req.body.password}).then((user)=>{
+        regisModel.findOne({email: req.body.email}).then((user)=>{
             res.status(409);
-            res.send("succesfully login");
+            res.send({name: user.name, message: "succesfully login"});
         }).catch(()=>{
-            res.send("something went wrong");
+            res.send("user is not register yet");
         })
     }    
     };
