@@ -1,0 +1,193 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: maroon;  
+  
+}  
+.container {  
+    margin :15px,auto; 
+    padding: 50px;  
+    background-color: powderblue;  
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 10px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color:lightgoldenrodyellow;
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: #4CAF50;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 100%;  
+  opacity: 0.9;  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+#form{
+  width: 70%;
+  margin: auto;
+}
+</style>  
+
+
+</head>  
+<body>  
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+
+    
+
+    function submitdata() {
+    var firstName = document.getElementById("firstname").value;
+    var middleName = document.getElementById("middlename").value;
+    var lastName = document.getElementById("lastname").value;
+    var gender = document.getElementById("gender").value;
+    var mobileno = document.getElementById("mobileno").value;
+    var trainings = document.getElementById("trainings").value;
+    var state = document.getElementById("state").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+  
+    var formObj={
+      firstName: firstName,
+      middleName: middleName,
+      lastname: lastName,
+      gender: gender,
+      mobileno: mobileno,
+      trainings: trainings,
+      state: state,
+      email: email,
+      password: password
+    }
+  
+  
+  axios.post("http://localhost:5000/register", formObj).then(Response=>{
+    console.log("login succesfully");
+  }).catch(err=>{
+    console.log("error" + err);
+  })
+    }
+  
+  </script>
+
+
+<div id="form">  
+  <button onclick="submitdata">sdnckjs</button>
+  <div class="container">  
+  <center> <h1><u>Join Our family - Apply Now</u></h1> </center>  
+  <hr>  
+  <label><b>First Name:</b></label>   
+<input type="text" name="firstname" id="firstname" placeholder= "Firstname" size="15" required />   
+<label><b>Middle Name:</b></label>   
+<input type="text" name="middlename" id="middlename" placeholder="Middlename" size="15"/>   
+<label><b>Last Name:</b> </label>    
+<input type="text" name="lastname" id="lastname" placeholder="Lastname" size="15"required />   
+<div>
+  <div>  
+    <label><b>Gender : </b> 
+    </label>&nbsp; 
+    <input type="radio" id="gender" value="Male" name="gender" checked > Male   
+    <input type="radio" value="Female" name="gender"> Female   
+    </div><br> 
+    <label> <b>Mobile No. : </b>  
+    </label>  
+      <input type="text" name="country code" placeholder="Country Code"  value="+91" size="2"/>   
+      <input type="text" id="mobileno" name="phone" placeholder="mobile no." size="10"/ required>    
+<label> <b>Our Courses :</b>
+</label><br> 
+<select id="trainings">  
+<option value="Classes"placeholder ="Our Courses our Trainer"></option>  
+<option value="Weight Lifting & Diet Planing Classes">Weight Lifting & Diet Planing Classes</option>  
+<option value="Yoga Classes">Yoga Classes</option>  
+<option value="Zumba Classes">Zumba Classes</option>  
+<option value="Swimming Classes">Swimming Classes</option>  
+<option value="Crossfit training">Crossfit training</option>  
+<option value="pregnancy training">pregnancy training</option>  
+</select>  
+</div> 
+&nbsp;&nbsp; 
+
+<div class="form-group">
+  <label class="col-form-label-sm"><b>State</b></label>
+  <select name="state" id="state" class="form-control form-control-sm">
+      <option value=”Madhya Pradesh”>Madhya Pradesh</option>
+      <option value=”Andaman and Nicobar Islands”>Andaman and Nicobar Islands</option>
+      <option value=”Andhra Pradesh”>Andhra Pradesh</option>
+      <option value=”Arunachal Pradesh”>Arunachal Pradesh</option>
+      <option value=”Assam”>Assam</option>
+      <option value=”Bihar”>Bihar</option>
+      <option value=”Chandigarh”>Chandigarh</option>
+      <option value=”Chhattisgarh”>Chhattisgarh</option>
+      <option value=”Dadra and Nagar Haveli”>Dadra and Nagar Haveli</option>
+      <option value=”Daman and Diu”>Daman and Diu</option>
+      <option value=”Delhi”>Delhi</option>
+      <option value=”Goa”>Goa</option>
+      <option value=”Gujarat”>Gujarat</option>
+      <option value=”Haryana”>Haryana</option>
+      <option value=”Himachal Pradesh”>Himachal Pradesh</option>
+      <option value=”Jammu and Kashmir”>Jammu and Kashmir</option>
+      <option value=”Jharkhand”>Jharkhand</option>
+      <option value=”Karnataka”>Karnataka</option>
+      <option value=”Kerala”>Kerala</option>
+      <option value=”Lakshadweep”>Lakshadweep</option>
+      <option value=”Madhya Pradesh”>Madhya Pradesh</option>
+      <option value=”Maharashtra”>Maharashtra</option>
+      <option value=”Manipur”>Manipur</option>
+      <option value=”Meghalaya”>Meghalaya</option>
+      <option value=”Mizoram”>Mizoram</option>
+      <option value=”Nagaland”>Nagaland</option>
+      <option value=”Orissa”>Orissa</option>
+      <option value=”Pondicherry”>Pondicherry</option>
+      <option value=”Punjab”>Punjab</option>
+      <option value=”Rajasthan”>Rajasthan</option>
+      <option value=”Sikkim”>Sikkim</option>
+      <option value=”Tamil Nadu”>Tamil Nadu</option>
+      <option value=”Tripura”>Tripura</option>
+      <option value=”Uttaranchal”>Uttaranchal</option>
+      <option value=”Uttar Pradesh”>Uttar Pradesh</option>
+      <option value=”West Bengal”>West Bengal</option>
+  </select>
+</div><br>
+<!--sCurrent Address :  
+<textarea cols="80" rows="5" placeholder="Current Address" value="address" required>  
+</textarea> -->
+ <label for="email"><b>Email</b></label>  
+ <input type="text" id="email" placeholder="example@gmail.com" name="email" required>  
+  
+    <label for="psw"><b>Password</b></label>  
+    <input type="password" id="password" placeholder="Enter Password" name="psw" required>  
+  
+    <label for="psw-repeat"><b>Re-type Password</b></label>  
+    <input type="password" placeholder="Retype Password" name="psw-repeat" required>  
+    <button onclick="submitdata()" id="registerbtn" class="registerbtn">Register</button>    
+  </div>
+
+
+</body>  
+</html>  
