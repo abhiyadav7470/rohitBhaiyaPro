@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 // const Schema = mongoose.Schema();
 
 var registerschema = new mongoose.Schema({
+    email:{
+        type: String
+    },
     firstName:{
         type: String
     },
@@ -14,16 +17,13 @@ var registerschema = new mongoose.Schema({
     gender:{
         type: String
     },
-    mobilno:{
+    mobileno:{
         type: Number
     },
     trainings:{
         type: String
     },
     state:{
-        type: String
-    },
-    email:{
         type: String
     },
     password:{

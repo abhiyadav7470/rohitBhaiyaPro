@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{  
+        font-family: Calibri, Helvetica, sans-serif;  
+        background-color: maroon;  
+        
+      }  
+      .container {  
+          margin :15px,auto; 
+          padding: 50px;  
+          background-color: powderblue;  
+      }  
+        
+      input[type=text], input[type=password], textarea {  
+        width: 100%;  
+        padding: 15px;  
+        margin: 10px 0 22px 0;  
+        display: inline-block;  
+        border: none;  
+        background: #f1f1f1;  
+      }  
+      input[type=text]:focus, input[type=password]:focus {  
+        background-color:lightgoldenrodyellow;
+        outline: none;  
+      }  
+       div {  
+                  padding: 10px 0;  
+               }  
+      hr {  
+        border: 1px solid #f1f1f1;  
+        margin-bottom: 25px;  
+      }  
+      .registerbtn {  
+        background-color: #4CAF50;  
+        color: white;  
+        padding: 16px 20px;  
+        margin: 8px 0;  
+        border: none;  
+        cursor: pointer;  
+        width: 100%;  
+        opacity: 0.9;  
+      }  
+      .registerbtn:hover {  
+        opacity: 1;  
+      }  
+      #form{
+        width: 70%;
+        margin: auto;
+      }
+      </style>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      <script>
+        var submitdata=()=>{
+            var registermail = document.getElementById("registeremail").value;
+            var password = document.getElementById("password").value;
+
+            axios({
+                method: 'patch',
+                url: "http://localhost:5000/login",
+                data: {
+                    email: registermail,
+                    password: password
+                }
+            }).then(Response=>{
+                console.log(Response);
+                alert(Response.data.message);
+                if(Response.data.message == "succesfully login"){
+                    location="index.html";
+                }
+            }).catch(err=>{
+                console.log("error" + err);
+            })
+            }
+                    
+      </script>
+</head>
+<body>
+
+    <div id="form">  
+        <div class="container">  
+        <center> <h1><u>Welcome to SignIn Page</u></h1> </center>  
+        <hr>  
+        <label><b>Enter Register Email</b></label>   
+      <input type="text" name="firstname" id="registeremail" placeholder= "example@gmail.com" size="15" required />   
+      <label><b>Enter Valid Password</b></label>   
+      <input type="text" name="middlename" id="password" size="15"/>   
+    
+      <button onclick="submitdata()" id="registerbtn" class="registerbtn">SignIn</button>    
+
+      <a href="register.html">
+      <button id="registerbtn" class="registerbtn">Resigter Now</button>    
+    </a>
+
+    </div>  
+</body>
+</html>

@@ -61,8 +61,6 @@ hr {
 
   <script>
 
-    
-
     function submitdata() {
     var firstName = document.getElementById("firstname").value;
     var middleName = document.getElementById("middlename").value;
@@ -72,12 +70,15 @@ hr {
     var trainings = document.getElementById("trainings").value;
     var state = document.getElementById("state").value;
     var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
+    var password = document.getElementById("password").value;  
   
-    var formObj={
+  axios({
+    method: 'post',
+    url: "http://localhost:5000/register",
+    data: {
       firstName: firstName,
       middleName: middleName,
-      lastname: lastName,
+      lastName: lastName,
       gender: gender,
       mobileno: mobileno,
       trainings: trainings,
@@ -85,20 +86,21 @@ hr {
       email: email,
       password: password
     }
-  
-  
-  axios.post("http://localhost:5000/register", formObj).then(Response=>{
-    console.log("login succesfully");
+  }).then(Response=>{
+    console.log(Response);
+    alert(Response.data.message);
+    location="login.html";
   }).catch(err=>{
     console.log("error" + err);
   })
-    }
+  }
+
+
   
   </script>
 
 
 <div id="form">  
-  <button onclick="submitdata">sdnckjs</button>
   <div class="container">  
   <center> <h1><u>Join Our family - Apply Now</u></h1> </center>  
   <hr>  

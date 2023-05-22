@@ -5,10 +5,18 @@ const Schema = mongoose.Schema;
 
 /////////////controllers///////////////////////////////
 const regisCtr = require('./controllers/registration.ctr');
+const bodyParser = require('body-parser');
 
 const app = express();//express instanse
 
-app.use(bodyparser.json());
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['*']);
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+});
 
 //////////////////stablish a server//////////////////////
 app.listen(5000, ()=>{

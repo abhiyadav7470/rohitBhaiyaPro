@@ -17,12 +17,12 @@ const regisCtr = {
         regisModel.findOne({email: req.body.email}).then((user)=>{
             if(user){
                 res.status(409);
-                res.send({error: 'conflict', errorDiscription: 'email is already register'});
+                res.send({error: 'conflict', message: 'email is already register'});
             }
             else{
                 const userCreated = new regisModel(req.body);
                 userCreated.save().then((user)=>{
-                    res.send(user.name + " is succesfully register");
+                    res.send({message: req.body.firstName + " is succesfully register"});
                 }).catch(error=>{
                     res.send("something went wrong");
                 })
@@ -48,10 +48,14 @@ const regisCtr = {
 
     login: (req,res)=>{
         regisModel.findOne({email: req.body.email}).then((user)=>{
-            res.status(409);
-            res.send({name: user.name, message: "succesfully login"});
+            if(req.body.password == user.password){
+                res.status(200);
+                res.send({message: "succesfully login"});
+            }else{
+                res.send({message: "password is incorrect"});
+            }
         }).catch(()=>{
-            res.send("user is not register yet");
+            res.send({message:"user is not register yet"});
         })
     }    
     };
