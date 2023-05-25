@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 /////////////controllers///////////////////////////////
 const regisCtr = require('./controllers/registration.ctr');
 const bodyParser = require('body-parser');
+const homepagectr = require('./controllers/homepagectr');
 
 const app = express();//express instanse
 
@@ -26,7 +27,7 @@ app.listen(5000, ()=>{
 
 ////////////////////////////////mongoose(connect to DB)/////////
 mongoose.connect("mongodb://localhost:27017/gymdb").then(res=>{
-    console.log("db is connect");
+    console.log("login db is connect");
 }).catch(err=>{console.log(err)});
 
 
@@ -36,3 +37,4 @@ app.post('/register', regisCtr.create);
 app.patch('/login', regisCtr.login);
 app.put("/update", regisCtr.update);
  
+app.get("/admin", homepagectr.updates);
